@@ -1,0 +1,39 @@
+<div class="jumbotron" ng-controller="detailsCtrl">
+  <div class="row" ng-switch="book.edit">
+    <span ng-switch-default>
+      <h1><strong>{{book.name}}</strong></h1>
+      <br>
+      <br>
+      <p><strong>Synopsis:</strong></p>
+      <p class="col-md-offset-1"><em><small>{{book.synopsis}}</small></em></p>
+      <p><strong>Characters:</strong></p>
+      <p class="col-md-offset-1"><em><small>{{book.characters}}</small></em></p>
+      <p><strong>Antagonists:</strong></p>
+      <p class="col-md-offset-1"><em><small>{{book.antagonists}}</small></em></p>
+      <p><strong>Year Released:</strong></p>
+      <p class="col-md-offset-1"><em><small>{{book.releaseDate}}</small></em></p>
+      
+      <button class="btn btn-warning glyphicon glyphicon-edit" ng-click="book.edit = true"></button>
+      <button class="btn btn-danger glyphicon glyphicon-trash" ng-click="remove(book)"></button>
+    </span>
+    
+    <span ng-switch-when="true">
+     <form name="bookeditForm">
+      <p><strong>Book Title:</strong></p>
+      <input type="text" class="form-control" ng-model="book.name">&nbsp;
+      <p><strong>Synopsis: </strong></p>
+      <input type="text" class="form-control" ng-model="book.synopsis">&nbsp;
+      <p><strong>Characters: </strong></p>
+      <input type="text" class="form-control" ng-model="book.characters">&nbsp;
+      <p><strong>Antagonists: </strong></p>
+      <input type="text" class="form-control" ng-model="book.antagonists">&nbsp;
+      <p><strong>Year Released: </strong></p>
+      <input type="text" class="form-control" ng-model="book.releaseDate">&nbsp;
+      
+      <input class="btn btn-success glyphicon glyphicon-save" ng-click="save(book)" ng-disabled="bookeditForm.$pristine" value="Save">
+      <button class="btn btn-danger glyphicon glyphicon-trash " ng-click="remove(book)"></button>
+    </form>
+    </span>
+    
+  </div>
+</div>

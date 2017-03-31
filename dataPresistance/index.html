@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="author" content="Emily Hutton">
+  <title>Data Persistence - Hutton</title>
+  <!------ JQUERY ----->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!----- Bootstrap --->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!----- Bootstrap JS ---->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+  <link href="css/appStyles.css" rel="stylesheet">
+  
+</head>
+
+<body ng-app="emApp">
+ 
+  <div class="container-fluid">
+   
+   <div ng-controller="bookCtrl as ctrl">
+   
+   <!--- modal for 'addBook form'---->
+    <div id="addBookModal" class="modal fade" role="dialog" tabindex="-1">
+      
+      
+      
+      <div class="modal-dialog">
+       
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add a new Book</h4>
+          </div>
+          
+          <div class="modal-body bg-warning text-white">
+            <!------ form starts ----->
+            <form ng-submit="ctrl.addBook(ctrl.newBook)" role="form" name="addItemForm">
+             <div class="form-group row">
+               <label for="addBookName" class="col-sm-4 col-form-label text-danger">Book Title</label>
+               <div class="col-sm-8 ">
+                 <input type="text" ng-model="ctrl.newBook.name" id="addName" class="form-control" placeholder="Enter Book Title" required>
+               </div>
+               <label for="addSynopsis" class="col-sm-4 col-form-label text-danger">Synopsis</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.synopsis" id="addSynopsis" class="form-control" placeholder="Enter the Synopsis" required>
+               </div>
+               <label for="addCharacters" class="col-sm-4 col-form-label text-danger">Characters</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.characters" id="addCharacters" placeholder="Enter Characters" required>
+               </div>
+               <label for="addAntagonists" class="col-sm-4 col-form-label text-danger">Antagonists</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.antagonists" id="addAntagonists" class="form-control" placeholder="Enter the Antagonists" required>
+               </div>
+               <label for="AddReleaseDate" class="col-sm-4 col-form-label text-danger">Year Released</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.releaseDate" id="addReleaseDate" class="form-conrol" placeholder="Enter Year Released" required>
+               </div>
+               <label for="addImage" class="col-sm-4 col-form-label text-danger">Image</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.image" id="addImage" class="form-control" placeholder="Add Image" required>
+               </div>
+               <label for="addImageAlt" class="col-sm-4 col-form-label text-danger">Image alt Text</label>
+               <div class="col-sm-8">
+                 <input type="text" ng-model="ctrl.newBook.imageAlt" id="addImageAlt" class="form-control" placeholder="Add Image alt text" required>
+               </div>
+             </div>
+             <div class="modal-footer">
+               <input class="btn btn-success" type="submit" value="Add new book" ng-click="addBook()" ng-disable="addItemForm.$invalid">
+               <button type="button" class="btn btn-warning" ng-click="ctrl.close(ctrl.newBook)">Clear All</button>
+               <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="ctrl.close(ctrl.newBook)">Cancel</button>
+             </div>
+            <!---- form ended -->
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    <!---- modal ended -->
+    </div>   
+   
+    <div class="row">
+      <div class="col-md-3 col-sm-5" >
+      <nav class="navbar navbar-inverse navbar-fixed-side">
+      <h2 class="glyphicon glyphicon-book "><strong> Hello Book Dragons</strong> </h2> 
+       <div class="left-navigation">
+        <ul class="list-group">
+          <li class="list-group-item btn btn-default " data-toggle="modal" data-target="#addBookModal"><strong> Add New Book</strong></li>
+          <a ng-repeat="book in ctrl.books " class="list-group-item btn btn-default" href="/#!/detail/{{book.$id}}">{{book.name}}</a>
+        </ul>
+        </div>
+        </nav>
+      </div>
+      <div ng-view class="col-md-9 pull-right"></div>
+    </div>
+    
+   
+   
+   
+   <!---- bookCtrl ended -->  
+   </div>
+   <!---- Container ended -->
+  </div>
+  
+  <!-- Link to Angularjs CDNs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <!-- Link to Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+  <!-- Link to AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <!-- Link to local js file -->
+  <script src="js/emApp.js"></script>
+  <!-- Link to CUID CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+
+
+h2 {
+  padding:10px;
+  text-align: center;
+  color: white;
+}
+.list-group {
+
+    list-style: none;
+    padding: 10px;
+    
+   
+}
+
+.list-group> li{
+    padding:10px;
+    text-align: center;
+
+}
+.list-group>li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: bolder;
+    
+}
+
+.list-group>a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: bolder;
+    
+}
