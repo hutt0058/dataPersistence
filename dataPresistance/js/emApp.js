@@ -51,7 +51,7 @@ function FillerCtrl($scope){
   $scope.itemId = null
 }
 
-function DetailsCtrl($scope, $routeParams, $location, books){
+function DetailsCtrl($scope, $routeParams, $location,$window, books){
   
   $scope.book = books.get($routeParams.itemId)
   
@@ -59,6 +59,7 @@ function DetailsCtrl($scope, $routeParams, $location, books){
   if (confirm("Deleting a book from the database cannot be undone. Are you shure you want to delete this Book?")) {
     console.log('remove button clicked')
     $scope.book.$remove(books);
+    $window.location.href = '/';
 //    $scope.book =   //figure out how to look up first book in list
   }
 }
